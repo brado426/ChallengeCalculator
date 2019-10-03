@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ChallengeCalculator 
 {
@@ -18,7 +19,7 @@ namespace ChallengeCalculator
 
             int returnInteger = 0;
 
-            string[] values = input.Split(',');
+            string[] values = input.Split(new char[] { ',', '\n' });
 
             foreach(string value in values)
             {

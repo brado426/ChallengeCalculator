@@ -20,7 +20,10 @@ namespace ChallengeCalculator.Tests
             {
                 // Pass... should throw an ArgumentException
             }
-
+            catch
+            {
+                Assert.Fail("NULL value not handled properly.");
+            }
 
             // Requirement 1:  Support two numbers 
 
@@ -34,6 +37,11 @@ namespace ChallengeCalculator.Tests
             // Requirement 2:  Support unlimited numbers
 
             Assert.AreEqual(cm.Add("1,2,3,4,5,6,7,8,9,10,11,12"), 78);
+
+            // Requirement 3:  Support a newline character as an alternative delimiter
+
+            Assert.AreEqual(cm.Add("1\n2,3"), 6);
+            Assert.AreEqual(cm.Add("1\n2,3\n5"), 11);
         }
     }
 }
