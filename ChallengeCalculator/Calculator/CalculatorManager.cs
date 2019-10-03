@@ -9,6 +9,7 @@ namespace ChallengeCalculator
     public class CalculatorManager : IDisposable
     {
         const int maximumValue = 1000;
+        private List<char> defaultDelimiters = new List<char>{ ',', '\n' };
 
         public CalculatorManager()
         {
@@ -21,7 +22,7 @@ namespace ChallengeCalculator
 
             int returnInteger = 0;
 
-            string[] values = input.Split(new char[] { ',', '\n' });
+            string[] values = ProcessCalculatorString(input);
 
             List<int> validValues = new List<int>();
 
@@ -46,6 +47,19 @@ namespace ChallengeCalculator
             }
 
             return returnInteger;
+        }
+
+        private string[] ProcessCalculatorString(string input)
+        {
+            List<char> delimiters = defaultDelimiters;
+
+            if (input.StartsWith("//"))
+            {
+                delimiters.Add(input[2]);
+                input = input.Substring(3);      
+            }
+
+            return input.Split(delimiters.ToArray());
         }
 
         public void Dispose()

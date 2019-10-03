@@ -62,6 +62,10 @@ namespace ChallengeCalculator.Tests
             // Requirement 5:  Ignore any number greater than 1000
 
             Assert.AreEqual(cm.Add("2,1001,6"), 8);
+
+            // Requirement 6:  Support 1 custom single character length delimiter
+
+            Assert.AreEqual(cm.Add("//;\n2;5"), 7);
         }
     }
 }
