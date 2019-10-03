@@ -15,14 +15,15 @@ namespace ChallengeCalculator.Tests
             try
             {
                 cm.Add(null);
+                Assert.Fail("FAIL:  NULL value not handled properly.");
             }
-            catch(ArgumentException)
+            catch (ArgumentException)
             {
                 // Pass... should throw an ArgumentException
             }
             catch
             {
-                Assert.Fail("NULL value not handled properly.");
+                Assert.Fail("FAIL:  NULL value not handled properly.");
             }
 
             // Requirement 1:  Support two numbers 
@@ -42,6 +43,21 @@ namespace ChallengeCalculator.Tests
 
             Assert.AreEqual(cm.Add("1\n2,3"), 6);
             Assert.AreEqual(cm.Add("1\n2,3\n5"), 11);
+
+            // Requirement 4:  Deny negative numbers
+            try
+            {
+                cm.Add("-5,-2,-3");
+                Assert.Fail("FAIL:  Negative values not handled properly.");
+            }
+            catch(ArgumentException)
+            {
+                // Pass... should throw an ArgumentException
+            }
+            catch
+            {
+                Assert.Fail("FAIL:  Negative values not handled properly.");
+            }
         }
     }
 }

@@ -21,6 +21,8 @@ namespace ChallengeCalculator
 
             string[] values = input.Split(new char[] { ',', '\n' });
 
+            List<int> validValues = new List<int>();
+
             foreach(string value in values)
             {
                 bool isNumeric = int.TryParse(value, out int numValue);
@@ -29,8 +31,16 @@ namespace ChallengeCalculator
                     numValue = Convert.ToInt32(value);
                 else 
                     numValue = 0;
-                
+
+                validValues.Add(numValue);
                 returnInteger += numValue;
+            }
+
+            // Requirement 4 - Deny negative numbers
+            List<int> negativeNumbers = validValues.Where(v => v < 0).ToList();     
+            if (negativeNumbers.Count > 0)
+            {
+                 throw new ArgumentException($"Negative numbers are not supported. {string.Join(", ", negativeNumbers)}");
             }
 
             return returnInteger;
