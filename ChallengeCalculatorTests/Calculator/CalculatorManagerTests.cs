@@ -30,7 +30,7 @@ namespace ChallengeCalculator.Tests
 
             Assert.AreEqual(cm.Add(""), 0);
             Assert.AreEqual(cm.Add("20"), 20);
-            Assert.AreEqual(cm.Add("1,5000"), 5001); // test two numbers
+            Assert.AreEqual(cm.Add("1,500"), 501); // test two numbers
             Assert.AreEqual(cm.Add("5,tytyt"), 5);
             Assert.AreEqual(cm.Add("5.2,5"), 5);  // test that decimals don't break anything
                                                   // Assert.AreEqual(cm.Add("5,2,3"), 7); // three or more values not allowed  (REMOVED for Requirement 2)    
@@ -58,6 +58,10 @@ namespace ChallengeCalculator.Tests
             {
                 Assert.Fail("FAIL:  Negative values not handled properly.");
             }
+
+            // Requirement 5:  Ignore any number greater than 1000
+
+            Assert.AreEqual(cm.Add("2,1001,6"), 8);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace ChallengeCalculator
 {
     public class CalculatorManager : IDisposable
     {
+        const int maximumValue = 1000;
+
         public CalculatorManager()
         {
         }
@@ -27,7 +29,7 @@ namespace ChallengeCalculator
             {
                 bool isNumeric = int.TryParse(value, out int numValue);
 
-                if (isNumeric)  
+                if (isNumeric && numValue <= maximumValue)  
                     numValue = Convert.ToInt32(value);
                 else 
                     numValue = 0;
