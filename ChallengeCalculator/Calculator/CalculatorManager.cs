@@ -22,14 +22,9 @@ namespace ChallengeCalculator
 
             foreach(string value in values)
             {
-                int numValue = 0;
+                bool isNumeric = int.TryParse(value, out int numValue);
 
-                bool isNumeric = int.TryParse(value, out numValue);
-
-                // we need this to keep track of how many values we have calculated thus far
-                int index = Array.IndexOf(values, value);
-
-                if (isNumeric && index <= 1)  // we will only calculate 2 numbers for now.  In the future, index <= 1 can be removed to allow unlimited numbers
+                if (isNumeric)  
                     numValue = Convert.ToInt32(value);
                 else 
                     numValue = 0;
