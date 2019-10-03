@@ -1,0 +1,2 @@
+# ChallengeCalculator
+Coding exercise
