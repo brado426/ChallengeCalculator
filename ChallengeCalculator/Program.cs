@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace ChallengeCalculator
 {
@@ -13,7 +14,10 @@ namespace ChallengeCalculator
 
                 try
                 {
-                    using (CalculatorManager calc = new CalculatorManager())
+                    int maximumValue = Convert.ToInt32(ConfigurationManager.AppSettings["MaximumValue"]);
+                    bool denyNegativeNumbers = Convert.ToBoolean(ConfigurationManager.AppSettings["DenyNegativeNumbers"]);
+
+                    using (CalculatorManager calc = new CalculatorManager(denyNegativeNumbers, maximumValue))
                     {
                         int result = calc.Add(strInput);
                         Console.WriteLine($"The result is {result}");

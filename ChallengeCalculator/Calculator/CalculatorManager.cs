@@ -8,11 +8,14 @@ namespace ChallengeCalculator
 {
     public class CalculatorManager : IDisposable
     {
-        const int maximumValue = 1000;
+        private int _maximumValue;
         private List<string> defaultDelimiters = new List<string> { ",", "\n" };
+        private bool _denyNegatives;
 
-        public CalculatorManager()
+        public CalculatorManager(bool denyNegative = true, int maximumValue = 1000)
         {
+            _denyNegatives = denyNegative;
+            _maximumValue = maximumValue;
         }
 
         public int Add(string input)
@@ -30,7 +33,7 @@ namespace ChallengeCalculator
             {
                 bool isNumeric = int.TryParse(value, out int numValue);
 
-                if (isNumeric && numValue <= maximumValue)
+                if (isNumeric && numValue <= _maximumValue)
                     numValue = Convert.ToInt32(value);
                 else
                     numValue = 0;
@@ -41,7 +44,7 @@ namespace ChallengeCalculator
 
             // Requirement 4 - Deny negative numbers
             List<int> negativeNumbers = validValues.Where(v => v < 0).ToList();
-            if (negativeNumbers.Count > 0)
+            if (_denyNegatives && negativeNumbers.Count > 0)
             {
                 throw new ArgumentException($"Negative numbers are not supported. {string.Join(", ", negativeNumbers)}");
             }
