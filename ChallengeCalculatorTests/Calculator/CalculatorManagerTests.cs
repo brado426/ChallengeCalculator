@@ -66,6 +66,14 @@ namespace ChallengeCalculator.Tests
             // Requirement 6:  Support 1 custom single character length delimiter
 
             Assert.AreEqual(cm.Add("//;\n2;5"), 7);
+
+            // Requirement 7:  Support 1 custom delimiter of any length
+
+            Assert.AreEqual(cm.Add("//[***]\n11***22***33"), 66);
+
+            // Requirement 8:  Support 1 custom delimiter of any length
+
+            Assert.AreEqual(cm.Add("//[*][!!][r9r]\n11r9r22*33!!44"), 110);
         }
     }
 }

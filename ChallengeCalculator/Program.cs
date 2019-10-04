@@ -11,10 +11,18 @@ namespace ChallengeCalculator
                 Console.Write("Please enter the formula to test: ");
                 string strInput = Console.ReadLine();
 
-                using (CalculatorManager calc = new CalculatorManager())
+                try
                 {
-                    int result = calc.Add(strInput);
-                    Console.WriteLine($"The result is {result}");
+                    using (CalculatorManager calc = new CalculatorManager())
+                    {
+                        int result = calc.Add(strInput);
+                        Console.WriteLine($"The result is {result}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // log exception to exception repository
+                    // Logger.LogError(ex);
                 }
             }
         }
