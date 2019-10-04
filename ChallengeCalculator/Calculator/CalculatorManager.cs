@@ -11,11 +11,13 @@ namespace ChallengeCalculator
         private int _maximumValue;
         private List<string> defaultDelimiters = new List<string> { ",", "\n" };
         private bool _denyNegatives;
+        private string _alternateDelimiter = null;
 
-        public CalculatorManager(bool denyNegative = true, int maximumValue = 1000)
+        public CalculatorManager(bool denyNegative = true, int maximumValue = 1000, string alternateDelimiter = null)
         {
             _denyNegatives = denyNegative;
             _maximumValue = maximumValue;
+            _alternateDelimiter = alternateDelimiter;
         }
 
         public int Add(string input)
@@ -55,6 +57,9 @@ namespace ChallengeCalculator
         private string[] ProcessCalculatorString(string input)
         {
             List<string> delimiters = defaultDelimiters;
+
+            if (_alternateDelimiter != null)
+                delimiters.Add(_alternateDelimiter);
 
             if (input.StartsWith("//"))
             {

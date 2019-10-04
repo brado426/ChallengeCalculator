@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ChallengeCalculator": {
+      "commandName": "Project",
+      "commandLineArgs": "-MaximumValue 1000 -DenyNegativeNumbers false -AlternateDelimiter x"
+    }
+  }
+}
